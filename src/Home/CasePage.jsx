@@ -142,7 +142,6 @@ const caseDetails = {
 };
 
 
-
 function CasePage() {
   const { id } = useParams();
   const caseDetail = caseDetails[id];
@@ -195,7 +194,7 @@ function CasePage() {
                 <li key={index} style={{ fontSize: '1rem', marginBottom: '10px' }}>{feature}</li>
               ))}
             </ul>
-            <img src="/src/images/qr.png" width="250" height="200" />
+            <img src="/images/qr.png" width="250" height="200" />
             <p>扫描二维码购买</p>
             <Link to="/">
               <Button type="primary">

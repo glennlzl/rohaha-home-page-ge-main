@@ -34,42 +34,42 @@ export const page2 = [
   {
     id: 1,
     title: 'Blog搭建工具',
-    image: '/src/images/asset_1.png',
+    image: './images/asset_1.png',
   },
   {
     id: 2,
     title: '企业门户网站搭建工具',
-    image: '/src/images/asset_2.png',
+    image: './images/asset_2.png',
   },
   {
     id: 3,
     title: '企业资源管理平台',
-    image: '/src/images/asset_3.png',
+    image: './images/asset_3.png',
   },
   {
     id: 4,
     title: '企业人事管理平台',
-    image: '/src/images/asset_4.png',
+    image: './images/asset_4.png',
   },
   {
     id: 5,
     title: '企业招聘管理平台',
-    image: '/src/images/asset_5.png',
+    image: './images/asset_5.png',
   },
   {
     id: 6,
     title: '企业运维系统',
-    image: '/src/images/asset_6.png',
+    image: './images/asset_6.png',
   },
   {
     id: 7,
     title: '企业交付管理平台',
-    image: '/src/images/asset_7.png',
+    image: './images/asset_7.png',
   },
   {
     id: 8,
     title: '企业人才测评系统',
-    image: '/src/images/asset_8.png',
+    image: './images/asset_8.png',
   },
 ];
 
