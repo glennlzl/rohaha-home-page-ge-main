@@ -23,7 +23,7 @@ const caseDetails = {
       '数据分析： 提供详尽的访问数据统计和分析，帮助用户了解读者行为，优化内容策略。'
     ],
     price: '¥100',
-    image: '/src/images/asset_1.png',
+    image: '/images/asset_1.png',
   },
   2: {
     title: '开发者工具集成平台',

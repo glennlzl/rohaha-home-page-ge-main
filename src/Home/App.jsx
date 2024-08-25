@@ -10,7 +10,7 @@ function App() {
         <Route exact path="/" >
           <Home />
         </Route>
-        <Route path="/case/:id" > 动态路由
+        <Route path="/case/:id" >
           <CasePage />
         </Route>
       </Switch>
