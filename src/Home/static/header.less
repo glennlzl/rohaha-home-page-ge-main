@@ -1,0 +1,36 @@
+header {
+  width: 100%;
+  z-index: 1000;
+  top: 0;
+  background-color: #fff;
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    font-size: 14px;
+    padding: 0 24px;
+    width: 1152px;
+    margin: 0 auto;
+    h1 {
+      position: relative;
+      a {
+        display: block;
+        height: 64px;
+        width: 120px; // 设置宽度以匹配 logo 图片的比例
+        background: url('/src/images/logo.png') no-repeat center center; // 修改为你的实际路径
+        background-size: contain;
+        text-indent: -999em; // 隐藏文字，但保持可访问性
+      }
+      span {
+        position: absolute;
+        font-size: 14px;
+        font-weight: 400;
+        top: 6px;
+        left: 168px;
+        color: rgba(0, 0, 0, .65);
+        white-space: nowrap;
+      }
+    }
+  }
+}
