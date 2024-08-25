@@ -196,7 +196,7 @@ function CasePage() {
             </ul>
             <img src="/images/qr.png" width="250" height="200" />
             <p>扫描二维码购买</p>
-            <Link to="/">
+            <Link to="/" onClick={() => { window.location.href = '/'; }}>
               <Button type="primary">
                 返回主页
               </Button>

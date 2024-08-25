@@ -2,9 +2,8 @@
 import React from 'react';
 import QueueAnim from 'rc-queue-anim';
 import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
-import QRCode from 'qrcode.react';
 import { Row, Col } from 'antd';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { page2 } from './data';
 
 export default function Page2() {
@@ -13,9 +12,12 @@ export default function Page2() {
       <Link to={`/case/${d.id}`}>
         <div className="content-wrapper home-hover">
           <div className="image" style={{ backgroundImage: `url(${d.image})` }} />
-          <div className="code-wrapper">
-            <h4 style={{ textAlign: 'center', marginTop: '150px' }}>{d.title}</h4>
-          </div>
+          {/* <div className="code-wrapper"> */}
+          {/*   <h4 style={{ textAlign: 'center', marginTop: '150px' }}>点击了解更多</h4> */}
+          {/* </div> */}
+        </div>
+        <div className="image-title" style={{ textAlign: 'center', marginTop: '16px', fontWeight: 'bold', color: 'black' }}>
+          {d.title}
         </div>
       </Link>
     </Col>
