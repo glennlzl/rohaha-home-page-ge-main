@@ -182,19 +182,21 @@ function CasePage() {
           style={{ maxWidth: '800px', margin: '0 auto' }}
         >
           <Space direction="vertical" align="center" size="middle">
-            <h1 style={{ fontSize: '2rem', marginBottom: '20px' }}>{caseDetail.title}</h1>
-            <p style={{ fontSize: '1.2rem', marginBottom: '20px' }}>
+            <h1 style={{ fontSize: '2rem', marginBottom: '20px', textAlign: 'center' }}>{caseDetail.title}</h1>
+            <p style={{ fontSize: '1rem', marginBottom: '10px', textAlign: 'justify' }}>
               {caseDetail.background}
             </p>
-            <p style={{ fontSize: '1.5rem', marginBottom: '20px', fontWeight: 'bold' }}>
+            <p style={{ fontSize: '1.5rem', marginBottom: '20px', fontWeight: 'bold', textAlign: 'center' }}>
               功能介绍:
             </p>
-            <ul>
+            <ul style={{ paddingLeft: '20px', listStylePosition: 'outside', textAlign: 'justify' }}>
               {caseDetail.features.map((feature, index) => (
-                <li key={index} style={{ fontSize: '1rem', marginBottom: '10px' }}>{feature}</li>
+                <li key={index} style={{ fontSize: '1rem', marginBottom: '10px' }}>
+                  {feature}
+                </li>
               ))}
             </ul>
-            <img src="/images/qr.png" width="250" height="200" />
+            <img src="/images/qr.png" width="250" height="250" style={{ marginBottom: '20px' }} />
             <p>扫描二维码购买</p>
             <Link to="/" onClick={() => { window.location.href = '/'; }}>
               <Button type="primary">

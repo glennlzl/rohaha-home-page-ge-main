@@ -7,7 +7,7 @@ export const page1 = [
     src: 'https://gw.alipayobjects.com/zos/rmsportal/MmROsqZndrFBrIspzLlL.png',
     modalContent: {
       title: '资深团队详细介绍',
-      content: '我们的团队由来自世界前50顶尖学府的资深开发者组成，他们不仅具备深厚的技术背景，还拥有丰富的互联网行业从业经验。团队成员曾在全球知名科技公司担任重要职位，参与过多个大型项目的开发与管理。无论是前端开发、后端架构，还是移动应用开发，我们的团队都能够以高效和创新的方式解决各种复杂问题，为客户提供最优质的服务。',
+      content: '我们的团队由来自世界前50顶尖学府的资深开发者组成，我们不仅具备深厚的技术背景，还拥有丰富的互联网行业从业经验。团队成员曾在全球知名科技公司担任重要职位，参与过多个大型项目的开发与管理。无论是前端开发、后端架构，还是移动应用开发，我们的团队都能够以高效和创新的方式解决各种复杂问题，为客户提供最优质的服务。',
     },
   },
   {
@@ -38,32 +38,32 @@ export const page2 = [
   },
   {
     id: 2,
-    title: '企业门户网站搭建工具',
+    title: '开发者工具集成平台',
     image: './images/asset_2.png',
   },
   {
     id: 3,
-    title: '企业资源管理平台',
+    title: '企业门户网站搭建工具',
     image: './images/asset_3.png',
   },
   {
     id: 4,
-    title: '企业人事管理平台',
+    title: '企业资源管理平台',
     image: './images/asset_4.png',
   },
   {
     id: 5,
-    title: '企业招聘管理平台',
+    title: '企业人事管理平台',
     image: './images/asset_5.png',
   },
   {
     id: 6,
-    title: '企业运维系统',
+    title: '企业招聘管理平台',
     image: './images/asset_6.png',
   },
   {
     id: 7,
-    title: '企业交付管理平台',
+    title: '企业服务部署平台',
     image: './images/asset_7.png',
   },
   {
