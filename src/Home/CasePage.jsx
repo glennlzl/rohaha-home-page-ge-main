@@ -1,13 +1,25 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { Layout, Card, Button, Space } from 'antd';
+import {
+  Layout,
+  Card,
+  Button,
+  Space,
+  Form,
+  Input,
+  message,
+  Typography,
+  Divider, Row, Col,
+} from 'antd';
 import Header from './Header';
+import { ArrowLeftOutlined } from '@ant-design/icons';
+
 import Footer from './Footer';
 import Banner from './Banner';
 import DocumentTitle from 'react-document-title';
+
 const { Content } = Layout;
-
-
+const { Title, Text } = Typography;
 // 示例案例数据
 const caseDetails = {
   1: {
@@ -22,7 +34,7 @@ const caseDetails = {
       '多平台发布： 支持将博客内容同步发布到多个平台，如社交媒体和内容聚合平台，扩大内容传播范围。',
       '数据分析： 提供详尽的访问数据统计和分析，帮助用户了解读者行为，优化内容策略。'
     ],
-    price: '¥100',
+    price: '¥499',
     image: '/images/asset_1.png',
   },
   2: {
@@ -37,7 +49,7 @@ const caseDetails = {
       '团队协作： 内置团队协作功能，如任务分配、进度跟踪和实时沟通，帮助团队成员更好地协作和共享信息。',
       '数据分析和报告： 提供开发过程中的数据统计和报告，帮助用户跟踪项目进展、分析瓶颈，优化开发流程。'
     ],
-    price: '¥200',
+    price: '¥999',
     image: '/images/asset_2.png',
   },
   3: {
@@ -53,7 +65,7 @@ const caseDetails = {
       '安全性和权限管理： 提供先进的安全性功能，包括数据加密和权限管理，确保企业信息和用户数据的安全。',
       '数据分析： 内置数据分析工具，实时监控网站流量和用户行为，帮助企业优化网站内容和结构，提高用户体验。'
     ],
-    price: '¥300',
+    price: '¥2999',
     image: '/images/asset_3.png',
   },
   4: {
@@ -69,7 +81,7 @@ const caseDetails = {
       '数据分析与报告： 内置数据分析工具，生成资源使用、库存周转率等报告，帮助企业做出数据驱动的决策。',
       '自动警报和通知： 设置库存低于预设阈值时的自动警报，及时通知相关人员进行补货或调整采购计划。'
     ],
-    price: '¥400',
+    price: '¥9999',
     image: '/images/asset_4.png',
   },
   5: {
@@ -85,7 +97,7 @@ const caseDetails = {
       '数据分析与报告： 提供详尽的人力资源数据分析和报告，包括员工流动率、考勤统计、薪酬分析等，帮助企业做出数据驱动的决策。',
       '合规性和安全性： 确保人事管理过程符合相关法律法规，提供数据加密和权限管理功能，保护员工信息的安全性。'
     ],
-    price: '¥500',
+    price: '¥19999',
     image: '/images/asset_5.png',
   },
   6: {
@@ -100,7 +112,7 @@ const caseDetails = {
       '招聘数据分析： 提供招聘数据分析和报告，包括招聘渠道效果、职位填补时间、候选人来源等，帮助企业优化招聘策略。',
       '候选人沟通： 内置候选人沟通工具，支持自动化邮件和消息发送，提升候选人体验和沟通效率。',
     ],
-    price: '¥500',
+    price: '¥14999',
     image: '/images/asset_6.png',
   },
   7: {
@@ -118,7 +130,7 @@ const caseDetails = {
       '安全管理： 提供安全的部署管道，确保代码和数据在部署过程中的安全性，支持权限控制和审计日志。',
       '集成与扩展： 支持与企业现有的 CI/CD 工具、代码库、云平台的无缝集成，灵活扩展部署能力，满足不同规模企业的需求。'
     ],
-    price: '¥900',
+    price: '¥8999',
     image: '/images/asset_7.png',
   },
   8: {
@@ -136,7 +148,7 @@ const caseDetails = {
       '安全与合规： 确保测评数据的隐私和安全，符合相关的法律法规，支持数据加密和权限管理。',
       '与HR系统集成： 无缝集成现有的人力资源管理系统，支持测评结果的导入和使用，提升整体人力资源管理效率。'
     ],
-    price: '¥1000',
+    price: '¥4999',
     image: '/images/asset_8.png',
   },
 };
@@ -146,15 +158,24 @@ function CasePage() {
   const { id } = useParams();
   const caseDetail = caseDetails[id];
 
+  const [form] = Form.useForm();
+
+  const handleSubmit = (values) => {
+    // 模拟发送邮件
+    console.log('表单数据:', values);
+    message.success('您的信息已提交，我们会尽快与您联系。');
+    form.resetFields();
+  };
+
   if (!caseDetail) {
     return (
       <Layout>
         <Header />
         <Content style={{ padding: '100px 50px', textAlign: 'center' }}>
           <Card>
-            <h1>未找到对应的案例</h1>
+            <Title level={2}>未找到对应的案例</Title>
             <Link to="/">
-              <Button type="primary" icon={<HomeOutlined />}>
+              <Button type="primary" icon={<ArrowLeftOutlined />}>
                 返回主页
               </Button>
             </Link>
@@ -169,7 +190,8 @@ function CasePage() {
     <div className="home-page">
       <Header key="header" />
       <Banner key="banner" />
-      <Content style={{ padding: '100px 50px' }}>
+
+      <Content style={{ padding: '50px', maxWidth: '1500px', margin: '0 auto' }}>
         <Card
           hoverable
           cover={
@@ -179,35 +201,304 @@ function CasePage() {
               style={{ maxHeight: '400px', objectFit: 'cover' }}
             />
           }
-          style={{ maxWidth: '800px', margin: '0 auto' }}
+          style={{ width: '100%', padding: '20px' }} // 设置宽度为 100%
         >
-          <Space direction="vertical" align="center" size="middle">
-            <h1 style={{ fontSize: '2rem', marginBottom: '20px', textAlign: 'center' }}>{caseDetail.title}</h1>
-            <p style={{ fontSize: '1rem', marginBottom: '10px', textAlign: 'justify' }}>
-              {caseDetail.background}
-            </p>
-            <p style={{ fontSize: '1.5rem', marginBottom: '20px', fontWeight: 'bold', textAlign: 'center' }}>
-              功能介绍:
-            </p>
-            <ul style={{ paddingLeft: '20px', listStylePosition: 'outside', textAlign: 'justify' }}>
+          <Space
+            direction="vertical"
+            size="small"
+            style={{ width: '100%', textAlign: 'center' }}
+          >
+            {/* 主标题 */}
+            <Title level={1}>{caseDetail.title}</Title>
+
+            {/* 描述文字和动画 */}
+            <Row gutter={[16, 16]} align="middle">
+              {/* 右侧列：动画 */}
+              <Col xs={24} md={12} style={{ textAlign: 'center' }}>
+                {/* 替换为您的动画 */}
+                <img
+                  alt="Animation"
+                  src="src/images/test2.gif" // 请替换为您的动画路径
+                  style={{ width: '100%', maxWidth: '800px' }} // 增大 maxWidth
+                />
+              </Col>
+              {/* 左侧列：描述文字 */}
+              <Col xs={24} md={12}>
+                <Text
+                  style={{
+                    fontSize: '1rem',
+                    textAlign: 'justify',
+                    paddingRight: '20px',
+                  }}
+                >
+                  {caseDetail.background}
+                </Text>
+              </Col>
+            </Row>
+
+            {/* 分割线 */}
+            <Divider />
+
+            {/* 功能介绍 */}
+            <Title level={2}>功能介绍</Title>
+            <ul style={{ paddingLeft: '0', textAlign: 'center', listStyleType: 'none' }}>
               {caseDetail.features.map((feature, index) => (
-                <li key={index} style={{ fontSize: '1rem', marginBottom: '10px' }}>
+                <li
+                  key={index}
+                  style={{
+                    fontSize: '1rem',
+                    marginBottom: '10px',
+                  }}
+                >
                   {feature}
                 </li>
               ))}
             </ul>
-            <img src="/images/qr.png" width="250" height="250" style={{ marginBottom: '20px' }} />
-            <p>扫描二维码购买</p>
-            <Link to="/" onClick={() => { window.location.href = '/'; }}>
-              <Button type="primary">
+
+            {/* 分割线 */}
+            <Divider />
+
+            {/* 服务价格和周期 & 联系表单 */}
+            <div style={{ width: '100%', marginTop: '20px' }}>
+              <Row gutter={[32, 32]}>
+                {/* 左侧列：服务价格和周期 */}
+                <Col xs={24} md={12}>
+                  <Title level={2}>服务价格和周期</Title>
+                  <div
+                    style={{
+                      backgroundColor: '#fafafa',
+                      padding: '40px',
+                      borderRadius: '8px',
+                    }}
+                  >
+                    {/* 价格表 */}
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-around',
+                        flexWrap: 'wrap',
+                      }}
+                    >
+                      {/* 软件费用 */}
+                      <div
+                        style={{
+                          width: '100%',
+                          marginBottom: '20px',
+                          padding: '20px',
+                          border: '1px solid #e0e0e0',
+                          borderRadius: '8px',
+                          backgroundColor: '#ffffff',
+                          textAlign: 'center',
+                        }}
+                      >
+                        <Title level={3}>软件费用</Title>
+                        <Text
+                          style={{
+                            fontSize: '2rem',
+                            fontWeight: 'bold',
+                            color: '#fa8c16',
+                          }}
+                        >
+                          {caseDetail.price}
+                        </Text>
+                        <Divider />
+                        <ul
+                          style={{
+                            listStyleType: 'none',
+                            padding: 0,
+                            textAlign: 'left',
+                          }}
+                        >
+                          <li>• 一次性购买，永久使用</li>
+                          <li>• 基础技术支持</li>
+                        </ul>
+                      </div>
+                      {/* 运维服务费用 */}
+                      <div
+                        style={{
+                          width: '100%',
+                          marginBottom: '20px',
+                          padding: '20px',
+                          border: '1px solid #e0e0e0',
+                          borderRadius: '8px',
+                          backgroundColor: '#ffffff',
+                          textAlign: 'center',
+                        }}
+                      >
+                        <Title level={3}>运维服务费用</Title>
+                        <Text
+                          style={{
+                            fontSize: '2rem',
+                            fontWeight: 'bold',
+                            color: '#52c41a',
+                          }}
+                        >
+                          ¥200/月 起
+                        </Text>
+                        <Divider />
+                        <ul
+                          style={{
+                            listStyleType: 'none',
+                            padding: 0,
+                            textAlign: 'left',
+                          }}
+                        >
+                          <li>• 标准运维：¥200/月</li>
+                          <li>• 高级运维：¥500/月</li>
+                          <li>• 7x24 小时支持</li>
+                        </ul>
+                      </div>
+                      {/* 服务周期 */}
+                      <div
+                        style={{
+                          width: '100%',
+                          marginBottom: '20px',
+                          padding: '20px',
+                          border: '1px solid #e0e0e0',
+                          borderRadius: '8px',
+                          backgroundColor: '#ffffff',
+                          textAlign: 'center',
+                        }}
+                      >
+                        <Title level={3}>服务周期</Title>
+                        <Text
+                          style={{
+                            fontSize: '2rem',
+                            fontWeight: 'bold',
+                            color: '#1890ff',
+                          }}
+                        >
+                          灵活周期
+                        </Text>
+                        <Divider />
+                        <ul
+                          style={{
+                            listStyleType: 'none',
+                            padding: 0,
+                            textAlign: 'left',
+                          }}
+                        >
+                          <li>• 月度服务：按月支付，灵活方便</li>
+                          <li>• 年度服务：一次性支付，享优惠</li>
+                          <li>• 定制服务周期可协商</li>
+                        </ul>
+                      </div>
+                    </div>
+                    {/* /!* 咨询按钮 *!/ */}
+                    {/* <div style={{ textAlign: 'center', marginTop: '20px' }}> */}
+                    {/*   <Button */}
+                    {/*     type="primary" */}
+                    {/*     size="large" */}
+                    {/*     style={{ */}
+                    {/*       borderRadius: '4px', */}
+                    {/*       backgroundColor: '#1890ff', */}
+                    {/*       borderColor: '#1890ff', */}
+                    {/*     }} */}
+                    {/*     onClick={() => { */}
+                    {/*       // 滚动到联系表单部分 */}
+                    {/*       document */}
+                    {/*         .getElementById('contactForm') */}
+                    {/*         .scrollIntoView({ behavior: 'smooth' }); */}
+                    {/*     }} */}
+                    {/*   > */}
+                    {/*     立即咨询 */}
+                    {/*   </Button> */}
+                    {/* </div> */}
+                  </div>
+                </Col>
+
+                {/* 右侧列：联系我们 */}
+                <Col xs={24} md={12}>
+                  <div id="contactForm">
+                    <Title level={2}>联系我们</Title>
+                    <Form
+                      form={form}
+                      layout="vertical"
+                      onFinish={handleSubmit}
+                      style={{ width: '100%' }}
+                    >
+                      <Form.Item
+                        label="姓名"
+                        name="name"
+                        rules={[{ required: true, message: '请输入您的姓名' }]}
+                      >
+                        <Input
+                          placeholder="请输入您的姓名"
+                          size="large"
+                          style={{ borderRadius: '4px' }}
+                        />
+                      </Form.Item>
+                      <Form.Item
+                        label="电话"
+                        name="phone"
+                        rules={[{ required: true, message: '请输入您的电话' }]}
+                      >
+                        <Input
+                          placeholder="请输入您的电话"
+                          size="large"
+                          style={{ borderRadius: '4px' }}
+                        />
+                      </Form.Item>
+                      <Form.Item
+                        label="工作邮箱"
+                        name="email"
+                        rules={[
+                          { required: true, message: '请输入您的工作邮箱' },
+                          { type: 'email', message: '请输入有效的邮箱地址' },
+                        ]}
+                      >
+                        <Input
+                          placeholder="请输入您的工作邮箱"
+                          size="large"
+                          style={{ borderRadius: '4px' }}
+                        />
+                      </Form.Item>
+                      <Form.Item
+                        label="描述"
+                        name="description"
+                        rules={[{ required: true, message: '请输入您的需求描述' }]}
+                      >
+                        <Input.TextArea
+                          placeholder="请输入您的需求描述"
+                          rows={4}
+                          style={{ borderRadius: '4px' }}
+                        />
+                      </Form.Item>
+                      <Form.Item>
+                        <Button
+                          type="primary"
+                          htmlType="submit"
+                          size="large"
+                          style={{
+                            width: '100%',
+                            borderRadius: '4px',
+                            backgroundColor: '#52c41a',
+                            borderColor: '#52c41a',
+                          }}
+                        >
+                          提交
+                        </Button>
+                      </Form.Item>
+                    </Form>
+                  </div>
+                </Col>
+              </Row>
+            </div>
+
+            <Divider />
+
+
+            {/* 返回主页按钮 */}
+            <Link to="/">
+              <Button type="default" size="large" icon={<ArrowLeftOutlined />}>
                 返回主页
               </Button>
             </Link>
           </Space>
         </Card>
       </Content>
-      <Footer key="footer" />
-      <DocumentTitle title="上海洛哈纳网络科技有限公司" />
+      <Footer />
+      <DocumentTitle title={`${caseDetail.title} - 上海洛哈纳网络科技有限公司`} />
     </div>
   );
 }
