@@ -9,7 +9,9 @@ import {
   Input,
   message,
   Typography,
-  Divider, Row, Col,
+  Divider,
+  Row,
+  Col,
 } from 'antd';
 import Header from './Header';
 import { ArrowLeftOutlined } from '@ant-design/icons';
@@ -218,7 +220,7 @@ function CasePage() {
                 {/* 替换为您的动画 */}
                 <img
                   alt="Animation"
-                  src="src/images/test2.gif" // 请替换为您的动画路径
+                  src="images/test2.gif" // 请替换为您的动画路径
                   style={{ width: '100%', maxWidth: '800px' }} // 增大 maxWidth
                 />
               </Col>
