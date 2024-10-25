@@ -282,119 +282,151 @@ function CasePage() {
                     }}
                   >
                     {/* 价格表 */}
-                    <div
-                      style={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        justifyContent: 'flex-start', // 修改为 flex-start
-                        gap: '20px', // 添加 gap 属性控制子元素间距
-                      }}
-                    >
+                    <Row gutter={[20, 20]}>
                       {/* 软件费用 */}
-                      <div
-                        style={{
-                          width: 'calc(50% - 10px)', // 修改宽度
-                          marginBottom: '20px',
-                          padding: '20px',
-                          border: '1px solid #e0e0e0',
-                          borderRadius: '8px',
-                          backgroundColor: '#ffffff',
-                          textAlign: 'center',
-                        }}
-                      >
-                        <Title level={3}>软件费用</Title>
-                        <Text
+                      <Col xs={24} sm={12}>
+                        {/* 项目内容 */}
+                        <div
                           style={{
-                            fontSize: '2rem',
-                            fontWeight: 'bold',
-                            color: '#fa8c16',
+                            padding: '20px',
+                            border: '1px solid #e0e0e0',
+                            borderRadius: '8px',
+                            backgroundColor: '#ffffff',
+                            textAlign: 'center',
                           }}
                         >
-                          {caseDetail.price}
-                        </Text>
-                        <Divider />
-                        <ul
-                          style={{
-                            listStyleType: 'none',
-                            padding: 0,
-                            textAlign: 'left',
-                          }}
-                        >
-                          <li>• 一次性购买，永久使用</li>
-                          <li>• 基础技术支持</li>
-                        </ul>
-                      </div>
+                          <Title level={3}>软件费用</Title>
+                          <Text
+                            style={{
+                              fontSize: '1.5rem',
+                              fontWeight: 'bold',
+                              color: '#fa8c16',
+                            }}
+                          >
+                            {caseDetail.price}
+                          </Text>
+                          <Divider />
+                          <ul
+                            style={{
+                              listStyleType: 'none',
+                              padding: 0,
+                              textAlign: 'left',
+                            }}
+                          >
+                            <li>• 一次性购买，永久使用</li>
+                            <li>• 基础技术支持</li>
+                          </ul>
+                        </div>
+                      </Col>
                       {/* 运维服务费用 */}
-                      <div
-                        style={{
-                          width: 'calc(50% - 10px)', // 修改宽度
-                          marginBottom: '20px',
-                          padding: '20px',
-                          border: '1px solid #e0e0e0',
-                          borderRadius: '8px',
-                          backgroundColor: '#ffffff',
-                          textAlign: 'center',
-                        }}
-                      >
-                        <Title level={3}>运维服务费用</Title>
-                        <Text
+                      <Col xs={24} sm={12}>
+                        {/* 项目内容 */}
+                        <div
                           style={{
-                            fontSize: '2rem',
-                            fontWeight: 'bold',
-                            color: '#52c41a',
+                            padding: '20px',
+                            border: '1px solid #e0e0e0',
+                            borderRadius: '8px',
+                            backgroundColor: '#ffffff',
+                            textAlign: 'center',
                           }}
                         >
-                          ¥200/月 起
-                        </Text>
-                        <Divider />
-                        <ul
-                          style={{
-                            listStyleType: 'none',
-                            padding: 0,
-                            textAlign: 'left',
-                          }}
-                        >
-                          <li>• 标准运维：¥200/月</li>
-                          <li>• 高级运维：¥500/月</li>
-                          <li>• 7x24 小时支持</li>
-                        </ul>
-                      </div>
+                          <Title level={3}>运维服务费用</Title>
+                          <Text
+                            style={{
+                              fontSize: '1.5rem',
+                              fontWeight: 'bold',
+                              color: '#52c41a',
+                            }}
+                          >
+                            ¥200/月 起
+                          </Text>
+                          <Divider />
+                          <ul
+                            style={{
+                              listStyleType: 'none',
+                              padding: 0,
+                              textAlign: 'left',
+                            }}
+                          >
+                            <li>• 标准运维：¥200/月</li>
+                            <li>• 高级运维：¥500/月</li>
+                            <li>• 7x24 小时支持</li>
+                          </ul>
+                        </div>
+                      </Col>
                       {/* 服务周期 */}
-                      <div
-                        style={{
-                          width: 'calc(50% - 10px)', // 修改宽度
-                          marginBottom: '20px',
-                          padding: '20px',
-                          border: '1px solid #e0e0e0',
-                          borderRadius: '8px',
-                          backgroundColor: '#ffffff',
-                          textAlign: 'center',
-                        }}
-                      >
-                        <Title level={3}>服务周期</Title>
-                        <Text
+                      <Col xs={24} sm={12}>
+                        {/* 项目内容 */}
+                        <div
                           style={{
-                            fontSize: '2rem',
-                            fontWeight: 'bold',
-                            color: '#1890ff',
+                            padding: '20px',
+                            border: '1px solid #e0e0e0',
+                            borderRadius: '8px',
+                            backgroundColor: '#ffffff',
+                            textAlign: 'center',
                           }}
                         >
-                          灵活周期
-                        </Text>
-                        <Divider />
-                        <ul
+                          <Title level={3}>服务周期</Title>
+                          <Text
+                            style={{
+                              fontSize: '1.5rem',
+                              fontWeight: 'bold',
+                              color: '#1890ff',
+                            }}
+                          >
+                            灵活周期
+                          </Text>
+                          <Divider />
+                          <ul
+                            style={{
+                              listStyleType: 'none',
+                              padding: 0,
+                              textAlign: 'left',
+                            }}
+                          >
+                            <li>• 月度服务：按月支付，灵活方便</li>
+                            <li>• 年度服务：一次性支付，享优惠</li>
+                            <li>• 定制服务周期可协商</li>
+                          </ul>
+                        </div>
+                      </Col>
+                      {/* 新增项目 */}
+                      <Col xs={24} sm={12}>
+                        {/* 项目内容 */}
+                        <div
                           style={{
-                            listStyleType: 'none',
-                            padding: 0,
-                            textAlign: 'left',
+                            padding: '20px',
+                            border: '1px solid #e0e0e0',
+                            borderRadius: '8px',
+                            backgroundColor: '#ffffff',
+                            textAlign: 'center',
                           }}
                         >
-                          <li>• 月度服务：按月支付，灵活方便</li>
-                          <li>• 年度服务：一次性支付，享优惠</li>
-                          <li>• 定制服务周期可协商</li>
-                        </ul>
-                      </div>
-                    </div>
+                          <Title level={3}>增值服务</Title>
+                          <Text
+                            style={{
+                              fontSize: '1.5rem',
+                              fontWeight: 'bold',
+                              color: '#f5222d',
+                            }}
+                          >
+                            ¥500 起
+                          </Text>
+                          <Divider />
+                          <ul
+                            style={{
+                              listStyleType: 'none',
+                              padding: 0,
+                              textAlign: 'left',
+                            }}
+                          >
+                            <li>• 定制开发</li>
+                            <li>• 个性化支持</li>
+                            <li>• 专属顾问服务</li>
+                          </ul>
+                        </div>
+                      </Col>
+                    </Row>
                   </div>
                 </Col>
 
@@ -444,6 +476,46 @@ function CasePage() {
                           style={{ borderRadius: '4px' }}
                         />
                       </Form.Item>
+
+                      {/* /!* 新增输入框：公司 *!/ */}
+                      {/* <Form.Item */}
+                      {/*   label="公司" */}
+                      {/*   name="company" */}
+                      {/*   rules={[{ required: true, message: '请输入您的公司名称' }]} */}
+                      {/* > */}
+                      {/*   <Input */}
+                      {/*     placeholder="请输入您的公司名称" */}
+                      {/*     size="large" */}
+                      {/*     style={{ borderRadius: '4px' }} */}
+                      {/*   /> */}
+                      {/* </Form.Item> */}
+
+                      {/* /!* 新增输入框：城市 *!/ */}
+                      {/* <Form.Item */}
+                      {/*   label="城市" */}
+                      {/*   name="city" */}
+                      {/*   rules={[{ required: true, message: '请输入您所在的城市' }]} */}
+                      {/* > */}
+                      {/*   <Input */}
+                      {/*     placeholder="请输入您所在的城市" */}
+                      {/*     size="large" */}
+                      {/*     style={{ borderRadius: '4px' }} */}
+                      {/*   /> */}
+                      {/* </Form.Item> */}
+
+                      {/* 新增输入框：预算 */}
+                      <Form.Item
+                        label="预算"
+                        name="budget"
+                        rules={[{ required: true, message: '请输入您的预算' }]}
+                      >
+                        <Input
+                          placeholder="请输入您的预算"
+                          size="large"
+                          style={{ borderRadius: '4px' }}
+                        />
+                      </Form.Item>
+
                       <Form.Item
                         label="描述"
                         name="description"
@@ -473,6 +545,7 @@ function CasePage() {
                     </Form>
                   </div>
                 </Col>
+
               </Row>
             </div>
 
