@@ -7,5 +7,6 @@ module.exports = function(webpackConfig) {
     libraryName: 'antd',
     style: 'css',
   }]);
+
   return webpackConfig;
 };

@@ -29,7 +29,7 @@ export default function Page4() {
   }
   return (
     <div className="home-layout-wrapper home-user-wrapper">
-      <OverPack className="home-layout" playScale={0.4}>
+      <OverPack className="home-layout" playScale={0.4} always={false}>
         <QueueAnim className="home-user" type="bottom" key="home-func" ease="easeOutQuart" leaveReverse>
           <h2 key="h2">我们的用户</h2>
           <i key="i" className="line" />

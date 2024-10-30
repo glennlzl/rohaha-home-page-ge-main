@@ -41,7 +41,7 @@ export default function Page1() {
     <div className="home-layout-wrapper home-func-wrapper" id="home-func">
       <h2>公司介绍</h2>
       <i className="line" />
-      <OverPack className="home-layout" location="home-func" playScale={0.4}>
+      <OverPack className="home-layout" location="home-func" playScale={0.4} always={false}>
         <QueueAnim className="home-func" type="bottom" key="home-func" ease="easeOutQuart" leaveReverse>
           <QueueAnim
             key="content"
