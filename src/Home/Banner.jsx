@@ -17,7 +17,7 @@ class Banner extends React.PureComponent {
         <div className="home-layout">
           <QueueAnim className={`${className}-content-wrapper`} delay={300} ease="easeOutQuart">
             <h1 key="h2">
-              用心做软件, 服务好每一个客户
+              用心做好软件, 服务好每一个客户
             </h1>
             <p key="p">我们是一群真正的 Geek, 致力打造独创精品软件</p>
           </QueueAnim>
