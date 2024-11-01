@@ -1,11 +1,10 @@
-/* eslint-disable react/jsx-indent */
 import React from 'react';
-import QueueAnim from 'rc-queue-anim';
-import { Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
+import { Row, Col } from 'antd';
+import QueueAnim from 'rc-queue-anim';
 import { page2 } from './data';
 
-export default function Page2() {
+export default function Page2(props) {
   const children = page2.map((d, i) => (
     <Col key={i} className="col" span={6}>
       <Link to={`/case/${d.id}`}>
@@ -20,7 +19,7 @@ export default function Page2() {
   ));
 
   return (
-    <div className="home-layout-wrapper home-case-wrapper">
+    <div id={props.id} className="home-layout-wrapper home-case-wrapper">
       <div className="home-layout">
         <QueueAnim
           className="home-case"

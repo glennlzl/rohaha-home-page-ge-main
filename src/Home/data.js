@@ -81,7 +81,7 @@ export const page3 = [
       <p key="1">Rohana 提供用户定义的软件开发流程，满足大大小小的需求，确保个体用户的诉求得以实现。</p>,
       <p key="4"></p>,
       <p key="5"></p>,
-      <p key="6">业务咨询： business@rohana.com</p>,
+      <p key="6">业务咨询： personal@rohana.com</p>,
     ],
     // exp: '免费使用',
     svg: (<svg width="32px" height="32px" viewBox="0 0 32 32">
@@ -161,7 +161,7 @@ export const page3 = [
       <p class="left-align" key="1">针对您的特定业务需求，我们的专家团队将为您设计和开发完全定制化的软件解决方案。</p>,
       <p key="4"></p>,
       <p key="5"></p>,
-      <p class="left-align" key="6">业务咨询： business@rohana.com</p>,
+      <p class="left-align" key="6">业务咨询： vip@rohana.com</p>,
     ],
     svg: (
       <svg width="32px" height="32px" viewBox="0 0 32 32">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
   Layout,
@@ -12,6 +12,7 @@ import {
   Divider,
   Row,
   Col,
+
 } from 'antd';
 import Header from './Header';
 import { ArrowLeftOutlined, DollarOutlined, SettingOutlined, ClockCircleOutlined, CustomerServiceOutlined} from '@ant-design/icons';
@@ -21,7 +22,7 @@ import Banner from './Banner';
 import DocumentTitle from 'react-document-title';
 
 const { Content } = Layout;
-const { Title, Text } = Typography;
+const { Title, Text, Paragraph } = Typography;
 // 示例案例数据
 const caseDetails = {
   1: {
@@ -259,6 +260,13 @@ function CasePage() {
   const caseDetail = caseDetails[id];
 
   const [form] = Form.useForm();
+  const mainTitleRef = useRef(null);
+
+  useEffect(() => {
+    if (mainTitleRef.current) {
+      mainTitleRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
 
   const handleSubmit = (values) => {
     // 模拟发送邮件
@@ -286,11 +294,12 @@ function CasePage() {
     );
   }
 
-  const CenteredTitle = ({ level, children }) => (
-    <Title level={level} style={{ textAlign: 'center' }}>
+  // 使用 React.forwardRef 来创建可以接受 ref 的组件
+  const CenteredTitle = React.forwardRef(({ level, children }, ref) => (
+    <Title ref={ref} level={level} style={{ textAlign: 'center' }}>
       {children}
     </Title>
-  );
+  ));
 
   return (
     <div className="home-page">
@@ -300,44 +309,40 @@ function CasePage() {
       <Content style={{ padding: '50px', maxWidth: '1500px', margin: '0 auto' }}>
         <Card
           hoverable
-          // cover={
-          //   <img
-          //     alt={caseDetail.title}
-          //     src={caseDetail.image}
-          //     style={{ maxHeight: '400px', objectFit: 'cover' }}
-          //   />
-          // }
           style={{ width: '100%', padding: '20px' }} // 设置宽度为 100%
         >
-          <Space
-            direction="vertical"
-            size="small"
-            style={{ width: '100%' }}
-          >
-            {/* 主标题 */}
-            <CenteredTitle level={1}>{caseDetail.title}</CenteredTitle>
+          <Space direction="vertical" size="small" style={{ width: '100%' }}>
+            {/* 主标题，传递 ref */}
+            <CenteredTitle ref={mainTitleRef} level={1}>
+              {caseDetail.title}
+            </CenteredTitle>
 
             {/* 描述文字和动画 */}
-            <Row gutter={[16, 16]} align="middle">
-              {/* 右侧列：动画 */}
-              <Col xs={24} md={12} style={{ textAlign: 'center' }}>
+            <Row gutter={[32, 32]} align="middle">
+              {/* 图片列 */}
+              <Col xs={24} md={16} style={{ textAlign: 'center' }}>
                 <img
                   alt="Animation"
-                  src={caseDetail.animation} // 请替换为您的动画路径
-                  style={{ width: '100%', maxWidth: '800px' }}
+                  src={caseDetail.animation}
+                  style={{
+                    width: '100%',
+                    borderRadius: '10px',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  }}
                 />
               </Col>
-              {/* 左侧列：描述文字 */}
-              <Col xs={24} md={12}>
-                <Text
+
+              {/* 描述文字列 */}
+              <Col xs={24} md={8}>
+                <Paragraph
                   style={{
-                    fontSize: '1rem',
-                    textAlign: 'left', // 确保文字左对齐
-                    paddingRight: '20px',
+                    fontSize: '1.1rem',
+                    lineHeight: '1.8',
+                    textAlign: 'left',
                   }}
                 >
                   {caseDetail.background}
-                </Text>
+                </Paragraph>
               </Col>
             </Row>
 
@@ -380,7 +385,6 @@ function CasePage() {
               </ul>
             </div>
 
-
             {/* 分割线 */}
             <Divider />
 
@@ -397,21 +401,33 @@ function CasePage() {
                         title: '软件费用',
                         price: caseDetail.price,
                         color: '#fa8c16',
-                        icon: <DollarOutlined style={{ fontSize: '2rem', color: '#fa8c16' }} />,
+                        icon: (
+                          <DollarOutlined
+                            style={{ fontSize: '2rem', color: '#fa8c16' }}
+                          />
+                        ),
                         features: caseDetail.softwarePrice,
                       },
                       {
                         title: '运维费用',
                         price: '¥200/月 起',
                         color: '#52c41a',
-                        icon: <SettingOutlined style={{ fontSize: '2rem', color: '#52c41a' }} />,
+                        icon: (
+                          <SettingOutlined
+                            style={{ fontSize: '2rem', color: '#52c41a' }}
+                          />
+                        ),
                         features: caseDetail.maintainPrice,
                       },
                       {
                         title: '服务周期',
                         price: '灵活周期',
                         color: '#1890ff',
-                        icon: <ClockCircleOutlined style={{ fontSize: '2rem', color: '#1890ff' }} />,
+                        icon: (
+                          <ClockCircleOutlined
+                            style={{ fontSize: '2rem', color: '#1890ff' }}
+                          />
+                        ),
                         features: [
                           '根据不同研发周期，我们提供不同的定制价格。对于比较着急的用户，我们提供紧急周期排布。详情联系我们',
                         ],
@@ -420,7 +436,11 @@ function CasePage() {
                         title: '客制化服务',
                         price: '定制开发',
                         color: '#f5222d',
-                        icon: <CustomerServiceOutlined style={{ fontSize: '2rem', color: '#f5222d' }} />,
+                        icon: (
+                          <CustomerServiceOutlined
+                            style={{ fontSize: '2rem', color: '#f5222d' }}
+                          />
+                        ),
                         features: ['具体细节请联系我们'],
                       },
                     ].map((item, index) => (
@@ -475,7 +495,11 @@ function CasePage() {
                                     alignItems: 'flex-start',
                                   }}
                                 >
-                                  <span style={{ color: item.color, marginRight: '8px' }}>•</span>
+                                  <span
+                                    style={{ color: item.color, marginRight: '8px' }}
+                                  >
+                                    •
+                                  </span>
                                   <span>{feature}</span>
                                 </li>
                               ))}
@@ -486,7 +510,6 @@ function CasePage() {
                     ))}
                   </Row>
                 </Col>
-
 
                 {/* 右侧列：联系我们 */}
                 <Col xs={24} md={12}>
@@ -603,15 +626,13 @@ function CasePage() {
                     </Form>
                   </div>
                 </Col>
-
               </Row>
             </div>
 
             <Divider />
 
-
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
-              <Link to="/">
+              <Link to="/#page2">
                 <Button type="default" size="large" icon={<ArrowLeftOutlined />}>
                   返回主页
                 </Button>
