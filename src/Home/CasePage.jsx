@@ -74,6 +74,14 @@ const caseDetails = {
         monthlyPrice: 3000,
         yearlyPrice: 2700,
       },
+      {
+        title: '定制服务',
+        price: '联系我们',
+        description:
+          '根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服。',
+        monthlyPrice: 3000,
+        yearlyPrice: 2700,
+      },
     ],
     customService:
       '根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服；',
@@ -119,6 +127,14 @@ const caseDetails = {
         monthlyPrice: 3000,
         yearlyPrice: 2700,
       },
+      {
+        title: '定制服务',
+        price: '联系我们',
+        description:
+          '根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服。',
+        monthlyPrice: 3000,
+        yearlyPrice: 2700,
+      },
     ],
     customService:
       '根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服；',
@@ -159,6 +175,14 @@ const caseDetails = {
         price: '低至 3000元/月 起',
         description:
           '专为大型企业设计，支持复杂的组织结构、海量数据管理、企业级协作工具和定制化开发服务，提供全面的技术支持和培训。',
+        monthlyPrice: 3000,
+        yearlyPrice: 2700,
+      },
+      {
+        title: '定制服务',
+        price: '联系我们',
+        description:
+          '根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服。',
         monthlyPrice: 3000,
         yearlyPrice: 2700,
       },
@@ -210,6 +234,14 @@ const caseDetails = {
         monthlyPrice: 5000,
         yearlyPrice: 4500,
       },
+      {
+        title: '定制服务',
+        price: '联系我们',
+        description:
+          '根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服。',
+        monthlyPrice: 3000,
+        yearlyPrice: 2700,
+      },
     ],
     customService:
       '根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服；',
@@ -256,6 +288,14 @@ const caseDetails = {
           '专为大型企业设计，支持复杂的组织结构、海量数据管理、企业级协作工具和定制化开发服务，提供全面的技术支持和培训。',
         monthlyPrice: 5000,
         yearlyPrice: 4500,
+      },
+      {
+        title: '定制服务',
+        price: '联系我们',
+        description:
+          '根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服。',
+        monthlyPrice: 3000,
+        yearlyPrice: 2700,
       },
     ],
     customService:
@@ -330,6 +370,14 @@ const caseDetails = {
           '专为大型企业设计，支持复杂的组织结构、海量数据管理、企业级协作工具和定制化开发服务，提供全面的技术支持和培训。',
         monthlyPrice: 5000,
         yearlyPrice: 4500,
+      },
+      {
+        title: '定制服务',
+        price: '联系我们',
+        description:
+          '根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服。',
+        monthlyPrice: 3000,
+        yearlyPrice: 2700,
       },
     ],
     customService:
