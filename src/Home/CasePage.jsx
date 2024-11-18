@@ -52,7 +52,7 @@ const caseDetails = {
     packages: [
       {
         title: '小团队套餐（1-10人）',
-        price: '每月低至 300元/月 起',
+        price: '低至 300元/月 起',
         description:
           '适合初创团队或小型项目，提供平台的基础使用权限和标准数据报告，支持基本的功能管理。',
         monthlyPrice: 300,
@@ -60,7 +60,7 @@ const caseDetails = {
       },
       {
         title: '中团队套餐（11-50人）',
-        price: '每月低至 1200元/月 起',
+        price: '低至 1200元/月 起',
         description:
           '适合中型企业或快速成长的团队，提供更大存储空间、跨团队协作、高级数据分析功能，以及更多的权限管理和支持服务。',
         monthlyPrice: 1200,
@@ -68,7 +68,7 @@ const caseDetails = {
       },
       {
         title: '大团队套餐（50人以上）',
-        price: '每月低至 3000元/月 起',
+        price: '低至 3000元/月 起',
         description:
           '专为大型企业设计，支持复杂的组织结构、海量数据管理、企业级协作工具和定制化开发服务，提供全面的技术支持和培训。',
         monthlyPrice: 3000,
@@ -97,7 +97,7 @@ const caseDetails = {
     packages: [
       {
         title: '小团队套餐（1-10人）',
-        price: '每月低至 300元/月 起',
+        price: '低至 300元/月 起',
         description:
           '适合初创团队或小型项目，提供平台的基础使用权限和标准数据报告，支持基本的功能管理。',
         monthlyPrice: 300,
@@ -105,7 +105,7 @@ const caseDetails = {
       },
       {
         title: '中团队套餐（11-50人）',
-        price: '每月低至 1200元/月 起',
+        price: '低至 1200元/月 起',
         description:
           '适合中型企业或快速成长的团队，提供更大存储空间、跨团队协作、高级数据分析功能，以及更多的权限管理和支持服务。',
         monthlyPrice: 1200,
@@ -113,7 +113,7 @@ const caseDetails = {
       },
       {
         title: '大团队套餐（50人以上）',
-        price: '每月低至 3000元/月 起',
+        price: '低至 3000元/月 起',
         description:
           '专为大型企业设计，支持复杂的组织结构、海量数据管理、企业级协作工具和定制化开发服务，提供全面的技术支持和培训。',
         monthlyPrice: 3000,
@@ -140,7 +140,7 @@ const caseDetails = {
     packages: [
       {
         title: '小团队套餐（1-10人）',
-        price: '每月低至 300元/月 起',
+        price: '低至 300元/月 起',
         description:
           '适合初创团队或小型项目，提供平台的基础使用权限和标准数据报告，支持基本的功能管理。',
         monthlyPrice: 300,
@@ -148,7 +148,7 @@ const caseDetails = {
       },
       {
         title: '中团队套餐（11-50人）',
-        price: '每月低至 1200元/月 起',
+        price: '低至 1200元/月 起',
         description:
           '适合中型企业或快速成长的团队，提供更大存储空间、跨团队协作、高级数据分析功能，以及更多的权限管理和支持服务。',
         monthlyPrice: 1200,
@@ -156,7 +156,7 @@ const caseDetails = {
       },
       {
         title: '大团队套餐（50人以上）',
-        price: '每月低至 3000元/月 起',
+        price: '低至 3000元/月 起',
         description:
           '专为大型企业设计，支持复杂的组织结构、海量数据管理、企业级协作工具和定制化开发服务，提供全面的技术支持和培训。',
         monthlyPrice: 3000,
@@ -188,7 +188,7 @@ const caseDetails = {
     packages: [
       {
         title: '小团队套餐（1-10人）',
-        price: '每月低至 500元/月 起',
+        price: '低至 500元/月 起',
         description:
           '适合初创团队或小型项目，提供平台的基础使用权限和标准数据报告，支持基本的功能管理。',
         monthlyPrice: 500,
@@ -196,7 +196,7 @@ const caseDetails = {
       },
       {
         title: '中团队套餐（11-50人）',
-        price: '每月低至 2000元/月 起',
+        price: '低至 2000元/月 起',
         description:
           '适合中型企业或快速成长的团队，提供更大存储空间、跨团队协作、高级数据分析功能，以及更多的权限管理和支持服务。',
         monthlyPrice: 2000,
@@ -204,7 +204,7 @@ const caseDetails = {
       },
       {
         title: '大团队套餐（50人以上）',
-        price: '每月低至 5000元/月 起',
+        price: '低至 5000元/月 起',
         description:
           '专为大型企业设计，支持复杂的组织结构、海量数据管理、企业级协作工具和定制化开发服务，提供全面的技术支持和培训。',
         monthlyPrice: 5000,
@@ -235,7 +235,7 @@ const caseDetails = {
     packages: [
       {
         title: '小团队套餐（1-10人）',
-        price: '每月低至 500元/月 起',
+        price: '低至 500元/月 起',
         description:
           '适合初创团队或小型项目，提供平台的基础使用权限和标准数据报告，支持基本的功能管理。',
         monthlyPrice: 500,
@@ -243,7 +243,7 @@ const caseDetails = {
       },
       {
         title: '中团队套餐（11-50人）',
-        price: '每月低至 2000元/月 起',
+        price: '低至 2000元/月 起',
         description:
           '适合中型企业或快速成长的团队，提供更大存储空间、跨团队协作、高级数据分析功能，以及更多的权限管理和支持服务。',
         monthlyPrice: 2000,
@@ -251,7 +251,7 @@ const caseDetails = {
       },
       {
         title: '大团队套餐（50人以上）',
-        price: '每月低至 5000元/月 起',
+        price: '低至 5000元/月 起',
         description:
           '专为大型企业设计，支持复杂的组织结构、海量数据管理、企业级协作工具和定制化开发服务，提供全面的技术支持和培训。',
         monthlyPrice: 5000,
@@ -309,7 +309,7 @@ const caseDetails = {
     packages: [
       {
         title: '小团队套餐（1-10人）',
-        price: '每月低至 500元/月 起',
+        price: '低至 500元/月 起',
         description:
           '适合初创团队或小型项目，提供平台的基础使用权限和标准数据报告，支持基本的功能管理。',
         monthlyPrice: 500,
@@ -317,7 +317,7 @@ const caseDetails = {
       },
       {
         title: '中团队套餐（11-50人）',
-        price: '每月低至 2000元/月 起',
+        price: '低至 2000元/月 起',
         description:
           '适合中型企业或快速成长的团队，提供更大存储空间、跨团队协作、高级数据分析功能，以及更多的权限管理和支持服务。',
         monthlyPrice: 2000,
@@ -325,7 +325,7 @@ const caseDetails = {
       },
       {
         title: '大团队套餐（50人以上）',
-        price: '每月低至 5000元/月 起',
+        price: '低至 5000元/月 起',
         description:
           '专为大型企业设计，支持复杂的组织结构、海量数据管理、企业级协作工具和定制化开发服务，提供全面的技术支持和培训。',
         monthlyPrice: 5000,
@@ -373,7 +373,8 @@ function CasePage() {
   const { id } = useParams();
   const caseDetail = caseDetails[id];
 
-  const [form] = Form.useForm();
+  const [contactForm] = Form.useForm();
+  const [loginForm] = Form.useForm();
   const mainTitleRef = useRef(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
@@ -387,6 +388,15 @@ function CasePage() {
   const [validateCodeSent, setValidateCodeSent] = useState(false);
   const [validateCode, setValidateCode] = useState('');
   const [selectedPackage, setSelectedPackage] = useState(null);
+  const [countdown, setCountdown] = useState(0); // 添加倒计时状态
+
+  useEffect(() => {
+    let timer;
+    if (countdown > 0) {
+      timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+    }
+    return () => clearTimeout(timer);
+  }, [countdown]);
 
   const handlePurchaseClick = (selectedPackage = null) => {
     setSelectedPackage(selectedPackage);
@@ -412,8 +422,9 @@ function CasePage() {
   };
 
   const handleSendValidateCode = async () => {
-    if (!phoneNumber) {
-      message.error('请输入手机号');
+    const phoneNumber = loginForm.getFieldValue('phoneNumber');
+    if (!phoneNumber || !/^1[3-9]\d{9}$/.test(phoneNumber.trim())) {
+      message.error('请输入有效的手机号');
       return;
     }
     setLoginLoading(true);
@@ -427,7 +438,7 @@ function CasePage() {
       );
       if (response.data.isSuccess) {
         message.success('验证码已发送');
-        setValidateCodeSent(true);
+        setCountdown(60); // 开始倒计时60秒
       } else {
         message.error(response.data.errMsg || '发送验证码失败');
       }
@@ -439,11 +450,10 @@ function CasePage() {
     }
   };
 
-  const handleValidateCode = async () => {
-    if (!validateCode) {
-      message.error('请输入验证码');
-      return;
-    }
+
+
+  const handleValidateCode = async (values) => {
+    const { phoneNumber, validateCode } = values;
     setLoginLoading(true);
     try {
       const response = await axios.post(
@@ -458,10 +468,14 @@ function CasePage() {
       );
       if (response.data.isSuccess) {
         message.success('登录成功');
-        setIsLoggedIn(true);
+        // 更新 localStorage
         localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('phoneNumber', phoneNumber); // 新增这行
+        localStorage.setItem('phoneNumber', phoneNumber);
         setIsLoginModalVisible(false);
+        loginForm.resetFields();
+
+        // 触发自定义事件，通知 Header 更新状态
+        window.dispatchEvent(new Event('loginStatusChanged'));
 
         // 登录成功后，根据产品类型决定下一步
         if (caseDetail.isForEnterprise && selectedPackage) {
@@ -483,6 +497,8 @@ function CasePage() {
       setLoginLoading(false);
     }
   };
+
+
 
   useEffect(() => {
     if (mainTitleRef.current) {
@@ -795,7 +811,7 @@ function CasePage() {
                   <div id="contactForm">
                     <Title level={2}>联系我们</Title>
                     <Form
-                      form={form}
+                      form={contactForm}
                       layout="vertical"
                       onFinish={handleSubmit}
                       style={{ width: '100%' }}
@@ -1021,13 +1037,19 @@ function CasePage() {
               visible={isLoginModalVisible}
               onCancel={() => {
                 setIsLoginModalVisible(false);
-                setPhoneNumber('');
-                setValidateCode('');
-                setValidateCodeSent(false);
+                form.resetFields();
               }}
               footer={null}
             >
-              <Form layout="vertical">
+              <Paragraph style={{ textAlign: 'center', marginBottom: '20px' }}>
+                您当前处于访客模式，购买服务前请登录
+              </Paragraph>
+
+              <Form
+                form={loginForm}
+                layout="vertical"
+                onFinish={handleValidateCode}
+              >
                 <Form.Item
                   label="手机号"
                   name="phoneNumber"
@@ -1041,47 +1063,65 @@ function CasePage() {
                 >
                   <Input
                     placeholder="请输入您的手机号"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
-                    disabled={validateCodeSent}
                   />
                 </Form.Item>
-                {validateCodeSent && (
-                  <Form.Item
-                    label="验证码"
-                    name="validateCode"
-                    rules={[{ required: true, message: '请输入验证码' }]}
-                  >
-                    <Input
-                      placeholder="请输入您收到的验证码"
-                      value={validateCode}
-                      onChange={(e) => setValidateCode(e.target.value)}
-                    />
-                  </Form.Item>
-                )}
-                <Form.Item>
-                  {validateCodeSent ? (
-                    <div style={{ textAlign: 'center' }}>
-                      <Button
-                        type="primary"
-                        onClick={handleValidateCode}
-                        loading={loginLoading}
-                        style={{ width: '100px' }}
+
+                <Form.Item
+                  label="验证码"
+                  required
+                >
+                  <Row gutter={8}>
+                    <Col span={16}>
+                      <Form.Item
+                        name="validateCode"
+                        noStyle
+                        rules={[{ required: true, message: '请输入验证码' }]}
                       >
-                        登录
-                      </Button>
-                    </div>
-                  ) : (
-                    <div style={{ textAlign: 'center' }}>
-                      <Button
-                        type="primary"
-                        onClick={handleSendValidateCode}
-                        loading={loginLoading}
-                        style={{ width: '150px' }}
+                        <Input placeholder="请输入验证码" />
+                      </Form.Item>
+                    </Col>
+                    <Col span={8}>
+                      <Form.Item
+                        shouldUpdate={(prevValues, currentValues) =>
+                          prevValues.phoneNumber !== currentValues.phoneNumber || countdown !== 0
+                        }
+                        noStyle
                       >
-                        发送验证码
-                      </Button>
-                    </div>
+                        {() => (
+                          <Button
+                            type="primary"
+                            onClick={handleSendValidateCode}
+                            loading={loginLoading}
+                            style={{ width: '100%' }}
+                            disabled={
+                              countdown > 0 ||
+                              !loginForm.getFieldValue('phoneNumber') ||
+                              !/^1[3-9]\d{9}$/.test(loginForm.getFieldValue('phoneNumber') ? loginForm.getFieldValue('phoneNumber') : '')
+                            }
+                          >
+                            {countdown > 0 ? `重新发送(${countdown}s)` : '发送验证码'}
+                          </Button>
+                        )}
+                      </Form.Item>
+
+                    </Col>
+                  </Row>
+                </Form.Item>
+
+                <Form.Item shouldUpdate>
+                  {() => (
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      loading={loginLoading}
+                      style={{ width: '100%' }}
+                      disabled={
+                        !loginForm.isFieldsTouched(true) ||
+                        loginForm.getFieldsError().filter(({ errors }) => errors.length).length > 0
+                      }
+                    >
+                      登录
+                    </Button>
                   )}
                 </Form.Item>
               </Form>
