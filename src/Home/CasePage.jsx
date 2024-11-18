@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
   Layout,
@@ -12,18 +12,25 @@ import {
   Divider,
   Row,
   Col,
-
+  Modal,
 } from 'antd';
 import Header from './Header';
-import { ArrowLeftOutlined, DollarOutlined, SettingOutlined, ClockCircleOutlined, CustomerServiceOutlined} from '@ant-design/icons';
-
+import {
+  ArrowLeftOutlined,
+  DollarOutlined,
+  SettingOutlined,
+  ClockCircleOutlined,
+  CustomerServiceOutlined,
+} from '@ant-design/icons';
 import Footer from './Footer';
 import Banner from './Banner';
 import DocumentTitle from 'react-document-title';
+import axios from 'axios';
 
 const { Content } = Layout;
 const { Title, Text, Paragraph } = Typography;
-// 示例案例数据
+
+// 完整的案例详情数据，包括企业产品和非企业产品
 const caseDetails = {
   1: {
     title: '企业资源管理平台',
@@ -40,19 +47,37 @@ const caseDetails = {
       '数据分析： 生成资源使用和库存周转率报告，支持数据驱动的决策。',
       '自动警报： 设置库存阈值警报，及时通知相关人员进行补货或调整采购计划。',
     ],
-    price: '低至¥29999起',
     image: '/images/asset_4.png',
     animation: '/images/资源管理.gif',
-    softwarePrice: [
-      '一次性购买，永久使用',
-      '基础技术支持',
-      '支持产品试用，交付定金即可',
+    packages: [
+      {
+        title: '小团队套餐（1-10人）',
+        price: '每月低至 300元/月 起',
+        description:
+          '适合初创团队或小型项目，提供平台的基础使用权限和标准数据报告，支持基本的功能管理。',
+        monthlyPrice: 300,
+        yearlyPrice: 270,
+      },
+      {
+        title: '中团队套餐（11-50人）',
+        price: '每月低至 1200元/月 起',
+        description:
+          '适合中型企业或快速成长的团队，提供更大存储空间、跨团队协作、高级数据分析功能，以及更多的权限管理和支持服务。',
+        monthlyPrice: 1200,
+        yearlyPrice: 1080,
+      },
+      {
+        title: '大团队套餐（50人以上）',
+        price: '每月低至 3000元/月 起',
+        description:
+          '专为大型企业设计，支持复杂的组织结构、海量数据管理、企业级协作工具和定制化开发服务，提供全面的技术支持和培训。',
+        monthlyPrice: 3000,
+        yearlyPrice: 2700,
+      },
     ],
-    maintainPrice: [
-      '标准运维：提供常规的运维支持，数据库容量有限（根据业务需求不同），每年进行数据清理。',
-      '高级运维：支持动态扩展数据库容量，数据库限制提升（根据业务需求不同），每两年进行数据清理。',
-      '7×24小时技术支持：全天候提供技术支持，确保系统稳定运行。',
-    ],
+    customService:
+      '根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服；',
+    isForEnterprise: true,
   },
   2: {
     title: '企业人事管理平台',
@@ -67,19 +92,37 @@ const caseDetails = {
       '数据分析： 提供人力资源数据分析和报告，包括员工流动率、薪酬分析等，帮助企业做出数据驱动的决策。',
       '合规安全： 确保人事管理过程符合相关法律法规，提供数据加密和权限管理功能，保护员工信息的安全性。',
     ],
-    price: '低至¥9999起',
     image: '/images/asset_5.png',
     animation: '/images/人事管理.gif',
-    softwarePrice: [
-      '一次性购买，永久使用',
-      '基础技术支持',
-      '支持产品试用，交付定金即可',
+    packages: [
+      {
+        title: '小团队套餐（1-10人）',
+        price: '每月低至 300元/月 起',
+        description:
+          '适合初创团队或小型项目，提供平台的基础使用权限和标准数据报告，支持基本的功能管理。',
+        monthlyPrice: 300,
+        yearlyPrice: 270,
+      },
+      {
+        title: '中团队套餐（11-50人）',
+        price: '每月低至 1200元/月 起',
+        description:
+          '适合中型企业或快速成长的团队，提供更大存储空间、跨团队协作、高级数据分析功能，以及更多的权限管理和支持服务。',
+        monthlyPrice: 1200,
+        yearlyPrice: 1080,
+      },
+      {
+        title: '大团队套餐（50人以上）',
+        price: '每月低至 3000元/月 起',
+        description:
+          '专为大型企业设计，支持复杂的组织结构、海量数据管理、企业级协作工具和定制化开发服务，提供全面的技术支持和培训。',
+        monthlyPrice: 3000,
+        yearlyPrice: 2700,
+      },
     ],
-    maintainPrice: [
-      '标准运维：提供常规的运维支持，数据库容量有限（根据业务需求不同），每年进行数据清理。',
-      '高级运维：支持动态扩展数据库容量，数据库限制提升（根据业务需求不同），每两年进行数据清理。',
-      '7×24小时技术支持：全天候提供技术支持，确保系统稳定运行。',
-    ],
+    customService:
+      '根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服；',
+    isForEnterprise: true,
   },
   3: {
     title: '企业招聘管理平台',
@@ -92,19 +135,37 @@ const caseDetails = {
       '数据分析： 提供招聘渠道效果、职位填补时间、候选人来源等数据分析，帮助企业优化招聘策略。',
       '候选人沟通： 内置沟通工具，支持自动化邮件和消息发送，提升候选人体验和沟通效率。',
     ],
-    price: '低至¥4999起步',
     image: '/images/asset_6.png',
     animation: '/images/招聘管理.gif',
-    softwarePrice: [
-      '一次性购买，永久使用',
-      '基础技术支持',
-      '支持产品试用，交付定金即可',
+    packages: [
+      {
+        title: '小团队套餐（1-10人）',
+        price: '每月低至 300元/月 起',
+        description:
+          '适合初创团队或小型项目，提供平台的基础使用权限和标准数据报告，支持基本的功能管理。',
+        monthlyPrice: 300,
+        yearlyPrice: 270,
+      },
+      {
+        title: '中团队套餐（11-50人）',
+        price: '每月低至 1200元/月 起',
+        description:
+          '适合中型企业或快速成长的团队，提供更大存储空间、跨团队协作、高级数据分析功能，以及更多的权限管理和支持服务。',
+        monthlyPrice: 1200,
+        yearlyPrice: 1080,
+      },
+      {
+        title: '大团队套餐（50人以上）',
+        price: '每月低至 3000元/月 起',
+        description:
+          '专为大型企业设计，支持复杂的组织结构、海量数据管理、企业级协作工具和定制化开发服务，提供全面的技术支持和培训。',
+        monthlyPrice: 3000,
+        yearlyPrice: 2700,
+      },
     ],
-    maintainPrice: [
-      '标准运维：提供常规的运维支持，数据容量有限（根据业务需求不同），每年进行数据清理。',
-      '高级运维：支持动态扩展数据容量，数据限制提升（根据业务需求不同），每两年进行数据清理。',
-      '7×24小时技术支持：全天候提供技术支持，确保系统稳定运行。',
-    ],
+    customService:
+      '根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服；',
+    isForEnterprise: true,
   },
   4: {
     title: '企业服务部署平台',
@@ -122,20 +183,37 @@ const caseDetails = {
       '安全管理： 提供安全的部署管道，确保代码和数据在部署过程中的安全性，支持权限控制和审计日志。',
       '集成与扩展： 支持与现有的 CI/CD 工具、代码库、云平台的无缝集成，满足不同规模企业的需求。',
     ],
-    price: '低至¥9999起步',
     image: '/images/asset_7.png',
     animation: '/images/部署平台.gif',
-    softwarePrice: [
-      '一次性购买，永久使用',
-      '包含初始配置和培训',
-      '支持多环境的流水线部署',
-      '支持产品试用，交付定金即可',
+    packages: [
+      {
+        title: '小团队套餐（1-10人）',
+        price: '每月低至 500元/月 起',
+        description:
+          '适合初创团队或小型项目，提供平台的基础使用权限和标准数据报告，支持基本的功能管理。',
+        monthlyPrice: 500,
+        yearlyPrice: 450,
+      },
+      {
+        title: '中团队套餐（11-50人）',
+        price: '每月低至 2000元/月 起',
+        description:
+          '适合中型企业或快速成长的团队，提供更大存储空间、跨团队协作、高级数据分析功能，以及更多的权限管理和支持服务。',
+        monthlyPrice: 2000,
+        yearlyPrice: 1800,
+      },
+      {
+        title: '大团队套餐（50人以上）',
+        price: '每月低至 5000元/月 起',
+        description:
+          '专为大型企业设计，支持复杂的组织结构、海量数据管理、企业级协作工具和定制化开发服务，提供全面的技术支持和培训。',
+        monthlyPrice: 5000,
+        yearlyPrice: 4500,
+      },
     ],
-    maintainPrice: [
-      '标准运维：提供常规的运维支持，适用于单一环境的部署，每年进行系统优化。',
-      '高级运维：支持多环境部署和定制化需求，提供持续集成和持续交付的优化，每两年进行系统升级。',
-      '7×24小时技术支持：全天候提供技术支持，确保部署流程的稳定性和可靠性。',
-    ],
+    customService:
+      '根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服；',
+    isForEnterprise: true,
   },
   5: {
     title: '企业人才测评系统',
@@ -152,20 +230,37 @@ const caseDetails = {
       '安全与合规： 确保测评数据的隐私和安全，符合相关的法律法规，支持数据加密和权限管理。',
       '与HR系统集成： 无缝集成现有的人力资源管理系统，支持测评结果的导入和使用，提升整体人力资源管理效率。',
     ],
-    price: '低至¥4999起步',
     image: '/images/asset_8.png',
     animation: '/images/人才.gif',
-    softwarePrice: [
-      '一次性购买，永久使用',
-      '基础技术支持',
-      '包含审批等流程业务模块',
-      '包含初始测评模型配置',
+    packages: [
+      {
+        title: '小团队套餐（1-10人）',
+        price: '每月低至 500元/月 起',
+        description:
+          '适合初创团队或小型项目，提供平台的基础使用权限和标准数据报告，支持基本的功能管理。',
+        monthlyPrice: 500,
+        yearlyPrice: 450,
+      },
+      {
+        title: '中团队套餐（11-50人）',
+        price: '每月低至 2000元/月 起',
+        description:
+          '适合中型企业或快速成长的团队，提供更大存储空间、跨团队协作、高级数据分析功能，以及更多的权限管理和支持服务。',
+        monthlyPrice: 2000,
+        yearlyPrice: 1800,
+      },
+      {
+        title: '大团队套餐（50人以上）',
+        price: '每月低至 5000元/月 起',
+        description:
+          '专为大型企业设计，支持复杂的组织结构、海量数据管理、企业级协作工具和定制化开发服务，提供全面的技术支持和培训。',
+        monthlyPrice: 5000,
+        yearlyPrice: 4500,
+      },
     ],
-    maintainPrice: [
-      '标准运维：提供常规的运维支持，数据容量有限，每年更新测评模型。',
-      '高级运维：支持定制化测评模型和报告，数据容量提升，每两年更新测评内容。',
-      '7×24小时技术支持：全天候提供技术支持，确保系统稳定运行。',
-    ],
+    customService:
+      '根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服；',
+    isForEnterprise: true,
   },
   6: {
     title: 'Blog搭建工具',
@@ -195,6 +290,7 @@ const caseDetails = {
       '高级运维：支持定制化设计和功能扩展，每年提供一次网站优化。',
       '7×24小时技术支持：全天候提供技术支持，确保网站稳定运行。',
     ],
+    isForEnterprise: false, // 非企业产品
   },
   7: {
     title: '开发者工具集成平台',
@@ -208,19 +304,37 @@ const caseDetails = {
       '团队协作： 内置团队协作功能，如任务分配、进度跟踪和实时沟通，帮助团队成员更好地协作和共享信息。',
       '数据分析和报告： 提供开发过程中的数据统计和报告，帮助用户跟踪项目进展、分析瓶颈，优化开发流程。',
     ],
-    price: '按需收费',
     image: '/images/asset_2.png',
     animation: '/images/开发集成.gif',
-    softwarePrice: [
-      '定制化方案，根据需求定价',
-      '包含初始配置和团队培训',
-      '支持产品试用，签订合同即可',
+    packages: [
+      {
+        title: '小团队套餐（1-10人）',
+        price: '每月低至 500元/月 起',
+        description:
+          '适合初创团队或小型项目，提供平台的基础使用权限和标准数据报告，支持基本的功能管理。',
+        monthlyPrice: 500,
+        yearlyPrice: 450,
+      },
+      {
+        title: '中团队套餐（11-50人）',
+        price: '每月低至 2000元/月 起',
+        description:
+          '适合中型企业或快速成长的团队，提供更大存储空间、跨团队协作、高级数据分析功能，以及更多的权限管理和支持服务。',
+        monthlyPrice: 2000,
+        yearlyPrice: 1800,
+      },
+      {
+        title: '大团队套餐（50人以上）',
+        price: '每月低至 5000元/月 起',
+        description:
+          '专为大型企业设计，支持复杂的组织结构、海量数据管理、企业级协作工具和定制化开发服务，提供全面的技术支持和培训。',
+        monthlyPrice: 5000,
+        yearlyPrice: 4500,
+      },
     ],
-    maintainPrice: [
-      '标准运维：提供常规的运维支持，定期更新工具插件，每年进行系统优化。',
-      '高级运维：支持定制化工具集成和工作流优化，持续更新插件库，每两年进行系统升级。',
-      '7×24小时技术支持：全天候提供技术支持，确保开发流程的顺畅。',
-    ],
+    customService:
+      '根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服；',
+    isForEnterprise: true,
   },
   8: {
     title: '企业门户网站搭建工具',
@@ -251,9 +365,9 @@ const caseDetails = {
       '高级运维：支持网站内容更新、功能扩展和SEO优化，每年提供一次网站改版。',
       '7×24小时技术支持：全天候提供技术支持，确保网站稳定运行。',
     ],
+    isForEnterprise: false, // 非企业产品
   },
 };
-
 
 function CasePage() {
   const { id } = useParams();
@@ -261,6 +375,114 @@ function CasePage() {
 
   const [form] = Form.useForm();
   const mainTitleRef = useRef(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedPaymentOption, setSelectedPaymentOption] = useState(null);
+  const [showQRCode, setShowQRCode] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem('isLoggedIn') === 'true'
+  );
+  const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [validateCodeSent, setValidateCodeSent] = useState(false);
+  const [validateCode, setValidateCode] = useState('');
+  const [selectedPackage, setSelectedPackage] = useState(null);
+
+  const handlePurchaseClick = (selectedPackage = null) => {
+    setSelectedPackage(selectedPackage);
+    if (isLoggedIn) {
+      if (caseDetail.isForEnterprise && selectedPackage) {
+        // 企业用户且选择了套餐，打开选择支付方式的弹窗
+        setIsModalVisible(true);
+        setShowQRCode(false);
+      } else if (!caseDetail.isForEnterprise) {
+        // 非企业用户，直接显示二维码
+        setIsModalVisible(true);
+        setShowQRCode(true);
+      }
+    } else {
+      // 未登录，打开登录弹窗
+      setIsLoginModalVisible(true);
+    }
+  };
+
+  const handleSelectPayment = (option) => {
+    setSelectedPaymentOption(option);
+    setShowQRCode(true);
+  };
+
+  const handleSendValidateCode = async () => {
+    if (!phoneNumber) {
+      message.error('请输入手机号');
+      return;
+    }
+    setLoginLoading(true);
+    try {
+      const response = await axios.post(
+        'http://106.54.213.250:8080/sms/sendSms',
+        { phoneNumber },
+        {
+          withCredentials: true,
+        }
+      );
+      if (response.data.isSuccess) {
+        message.success('验证码已发送');
+        setValidateCodeSent(true);
+      } else {
+        message.error(response.data.errMsg || '发送验证码失败');
+      }
+    } catch (error) {
+      console.error(error);
+      message.error('发送验证码失败');
+    } finally {
+      setLoginLoading(false);
+    }
+  };
+
+  const handleValidateCode = async () => {
+    if (!validateCode) {
+      message.error('请输入验证码');
+      return;
+    }
+    setLoginLoading(true);
+    try {
+      const response = await axios.post(
+        'http://106.54.213.250:8080/sms/validateSms',
+        {
+          phoneNumber,
+          validateCode,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      if (response.data.isSuccess) {
+        message.success('登录成功');
+        setIsLoggedIn(true);
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('phoneNumber', phoneNumber); // 新增这行
+        setIsLoginModalVisible(false);
+
+        // 登录成功后，根据产品类型决定下一步
+        if (caseDetail.isForEnterprise && selectedPackage) {
+          // 企业用户且选择了套餐，打开选择支付方式的弹窗
+          setIsModalVisible(true);
+          setShowQRCode(false);
+        } else if (!caseDetail.isForEnterprise) {
+          // 非企业用户，直接显示二维码
+          setIsModalVisible(true);
+          setShowQRCode(true);
+        }
+      } else {
+        message.error(response.data.errMsg || '验证码错误');
+      }
+    } catch (error) {
+      console.error(error);
+      message.error('验证码错误');
+    } finally {
+      setLoginLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (mainTitleRef.current) {
@@ -346,7 +568,6 @@ function CasePage() {
               </Col>
             </Row>
 
-
             {/* 分割线 */}
             <Divider />
 
@@ -388,126 +609,184 @@ function CasePage() {
             {/* 分割线 */}
             <Divider />
 
-            {/* 服务价格和周期 & 联系表单 */}
+            {/* 服务套餐和联系表单 */}
             <div style={{ width: '100%', marginTop: '20px' }}>
               <Row gutter={[32, 32]}>
-                {/* 左侧列：服务价格和周期 */}
+                {/* 左侧列：服务套餐 */}
                 <Col xs={24} md={12}>
-                  <Title level={2}>服务价格和周期</Title>
+                  <Title level={2}>服务套餐</Title>
                   <Row gutter={[20, 20]}>
-                    {/* 定义一个数组来存储卡片信息 */}
-                    {[
-                      {
-                        title: '软件费用',
-                        price: caseDetail.price,
-                        color: '#fa8c16',
-                        icon: (
-                          <DollarOutlined
-                            style={{ fontSize: '2rem', color: '#fa8c16' }}
-                          />
-                        ),
-                        features: caseDetail.softwarePrice,
-                      },
-                      {
-                        title: '运维费用',
-                        price: '¥200/月 起',
-                        color: '#52c41a',
-                        icon: (
-                          <SettingOutlined
-                            style={{ fontSize: '2rem', color: '#52c41a' }}
-                          />
-                        ),
-                        features: caseDetail.maintainPrice,
-                      },
-                      {
-                        title: '服务周期',
-                        price: '灵活周期',
-                        color: '#1890ff',
-                        icon: (
-                          <ClockCircleOutlined
-                            style={{ fontSize: '2rem', color: '#1890ff' }}
-                          />
-                        ),
-                        features: [
-                          '根据不同研发周期，我们提供不同的定制价格。对于比较着急的用户，我们提供紧急周期排布。详情联系我们',
-                        ],
-                      },
-                      {
-                        title: '客制化服务',
-                        price: '定制开发',
-                        color: '#f5222d',
-                        icon: (
-                          <CustomerServiceOutlined
-                            style={{ fontSize: '2rem', color: '#f5222d' }}
-                          />
-                        ),
-                        features: ['具体细节请联系我们'],
-                      },
-                    ].map((item, index) => (
-                      <Col xs={24} sm={12} key={index}>
-                        <Card
-                          hoverable
-                          style={{
-                            minHeight: '350px',
-                            height: '100%', // 确保卡片撑满列的高度
-                            borderRadius: '10px',
-                          }}
-                          bodyStyle={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'space-between',
-                            padding: '20px',
-                          }}
-                        >
-                          <div style={{ textAlign: 'center' }}>
-                            {item.icon}
-                            <Title level={3} style={{ marginTop: '10px' }}>
-                              {item.title}
-                            </Title>
-                            <Text
+                    {/* 判断是否为企业产品并有套餐 */}
+                    {caseDetail.isForEnterprise && caseDetail.packages && caseDetail.packages.length > 0 ? (
+                      caseDetail.packages.map((item, index) => (
+                        <Col xs={24} sm={12} key={index}>
+                          <Card
+                            hoverable
+                            style={{
+                              minHeight: '350px',
+                              height: '100%',
+                              borderRadius: '10px',
+                            }}
+                            bodyStyle={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              justifyContent: 'space-between',
+                              padding: '20px',
+                            }}
+                          >
+                            <div style={{ textAlign: 'center' }}>
+                              <Title level={3} style={{ marginTop: '10px' }}>
+                                {item.title}
+                              </Title>
+                              <Text
+                                style={{
+                                  fontSize: '1.5rem',
+                                  fontWeight: 'bold',
+                                  color: '#fa8c16',
+                                }}
+                              >
+                                {item.price}
+                              </Text>
+                            </div>
+
+                            {/* 加入 Divider 线条 */}
+                            <Divider />
+
+                            <div>
+                              <Paragraph>{item.description}</Paragraph>
+                            </div>
+
+                            {/* 添加购买按钮 */}
+                            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                              <Button
+                                type="primary"
+                                style={{
+                                  backgroundColor: '#fa8c16',
+                                  borderColor: '#fa8c16',
+                                }}
+                                onClick={() => handlePurchaseClick(item)}
+                              >
+                                购买
+                              </Button>
+                            </div>
+                          </Card>
+                        </Col>
+                      ))
+                    ) : (
+                      // 非企业产品，展示原有的价格卡片
+                      <React.Fragment>
+                        {/* 定义一个数组来存储卡片信息 */}
+                        {[
+                          {
+                            title: '软件费用',
+                            price: caseDetail.price,
+                            color: '#fa8c16',
+                            features: caseDetail.softwarePrice,
+                          },
+                          {
+                            title: '运维费用',
+                            price: '¥200/月 起',
+                            color: '#52c41a',
+                            features: caseDetail.maintainPrice,
+                          },
+                          {
+                            title: '服务周期',
+                            price: '灵活周期',
+                            color: '#1890ff',
+                            features: [
+                              '根据不同研发周期，我们提供不同的定制价格。对于比较着急的用户，我们提供紧急周期排布。详情联系我们',
+                            ],
+                          },
+                          {
+                            title: '定制服务',
+                            price: '请联系我们',
+                            color: '#f5222d',
+                            features: ['根据具体功能或需求评估费用，支持跨平台多系统协同使用，按开发工时或功能模块收费，具体请右侧提交表单咨询客服；'],
+                          },
+                        ].map((item, index) => (
+                          <Col xs={24} sm={12} key={index}>
+                            <Card
+                              hoverable
                               style={{
-                                fontSize: '1.5rem',
-                                fontWeight: 'bold',
-                                color: item.color,
+                                minHeight: '350px',
+                                height: '100%', // 确保卡片撑满列的高度
+                                borderRadius: '10px',
+                              }}
+                              bodyStyle={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'space-between',
+                                padding: '20px',
                               }}
                             >
-                              {item.price}
-                            </Text>
-                          </div>
+                              <div style={{ textAlign: 'center' }}>
+                                <Title level={3} style={{ marginTop: '10px' }}>
+                                  {item.title}
+                                </Title>
+                                {item.price && (
+                                  <Text
+                                    style={{
+                                      fontSize: '1.5rem',
+                                      fontWeight: 'bold',
+                                      color: item.color,
+                                    }}
+                                  >
+                                    {item.price}
+                                  </Text>
+                                )}
+                              </div>
 
-                          {/* 加入 Divider 线条 */}
-                          <Divider />
+                              {/* 加入 Divider 线条 */}
+                              <Divider />
 
-                          <div>
-                            <ul
-                              style={{
-                                listStyleType: 'none',
-                                padding: 0,
-                                marginTop: '20px',
-                              }}
-                            >
-                              {item.features.map((feature, idx) => (
-                                <li
-                                  key={idx}
+                              <div>
+                                <ul
                                   style={{
-                                    marginBottom: '10px',
-                                    display: 'flex',
-                                    alignItems: 'flex-start',
+                                    listStyleType: 'none',
+                                    padding: 0,
+                                    marginTop: '20px',
                                   }}
                                 >
-                                  <span
-                                    style={{ color: item.color, marginRight: '8px' }}
+                                  {item.features.map((feature, idx) => (
+                                    <li
+                                      key={idx}
+                                      style={{
+                                        marginBottom: '10px',
+                                        display: 'flex',
+                                        alignItems: 'flex-start',
+                                      }}
+                                    >
+                                      <span
+                                        style={{ color: item.color, marginRight: '8px' }}
+                                      >
+                                        •
+                                      </span>
+                                      <span>{feature}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+
+                              {/* 添加购买按钮 */}
+                              {item.title === '软件费用' && (
+                                <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                                  <Button
+                                    type="primary"
+                                    style={{
+                                      backgroundColor: item.color,
+                                      borderColor: item.color,
+                                    }}
+                                    onClick={() => handlePurchaseClick()}
                                   >
-                                    •
-                                  </span>
-                                  <span>{feature}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </Card>
-                      </Col>
-                    ))}
+                                    购买
+                                  </Button>
+                                </div>
+                              )}
+                            </Card>
+                          </Col>
+                        ))}
+                      </React.Fragment>
+                    )}
                   </Row>
                 </Col>
 
@@ -638,9 +917,179 @@ function CasePage() {
                 </Button>
               </Link>
             </div>
+
+            {/* 添加购买弹窗 */}
+            <Modal
+              title="购买"
+              visible={isModalVisible}
+              onCancel={() => {
+                setIsModalVisible(false);
+                setShowQRCode(false);
+                setSelectedPaymentOption(null);
+              }}
+              footer={null}
+            >
+              {showQRCode ? (
+                <React.Fragment>
+                  <Paragraph style={{ textAlign: 'center' }}>
+                    请使用微信扫描下方二维码进行支付
+                  </Paragraph>
+                  <div style={{ textAlign: 'center' }}>
+                    <img
+                      src={'/images/qr.png'}
+                      alt="支付二维码"
+                      style={{ width: '256px', height: '256px' }}
+                    />
+                  </div>
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  <Paragraph style={{ textAlign: 'center' }}>
+                    购买完成后您将收到平台的管理员账号密码以及说明手册，当前有以下两种支付方式可供选择
+                  </Paragraph>
+                  <Space
+                    direction="vertical"
+                    style={{ width: '100%' }}
+                    size="large"
+                  >
+                    {caseDetail.isForEnterprise && selectedPackage && (
+                      <React.Fragment>
+                        <Row align="middle">
+                          <Col flex="none" style={{ paddingRight: '10px' }}>
+                            <Text style={{ fontSize: '1rem' }}>○</Text>
+                          </Col>
+                          <Col flex="auto">
+                            <Text>
+                              按月支付：¥{selectedPackage.monthlyPrice}/月。
+                            </Text>
+                          </Col>
+                          <Col>
+                            <Button
+                              type="primary"
+                              onClick={() => handleSelectPayment('monthly')}
+                            >
+                              选择
+                            </Button>
+                          </Col>
+                        </Row>
+                        <Row align="middle">
+                          <Col flex="none" style={{ paddingRight: '10px' }}>
+                            <Text style={{ fontSize: '1rem' }}>○</Text>
+                          </Col>
+                          <Col flex="auto">
+                            <Text>
+                              购买1年（9折）：¥{selectedPackage.yearlyPrice}/月。
+                            </Text>
+                          </Col>
+                          <Col>
+                            <Button
+                              type="primary"
+                              onClick={() => handleSelectPayment('yearly')}
+                            >
+                              选择
+                            </Button>
+                          </Col>
+                        </Row>
+                      </React.Fragment>
+                    )}
+                    {!caseDetail.isForEnterprise && (
+                      <Row align="middle">
+                        <Col flex="none" style={{ paddingRight: '10px' }}>
+                          <Text style={{ fontSize: '1rem' }}>○</Text>
+                        </Col>
+                        <Col flex="auto">
+                          <Text>一次性购买：¥{caseDetail.price}/次。</Text>
+                        </Col>
+                        <Col>
+                          <Button
+                            type="primary"
+                            onClick={() => handleSelectPayment('one-time')}
+                          >
+                            选择
+                          </Button>
+                        </Col>
+                      </Row>
+                    )}
+                  </Space>
+                </React.Fragment>
+              )}
+            </Modal>
+
+            {/* 添加登录弹窗 */}
+            <Modal
+              title="登录"
+              visible={isLoginModalVisible}
+              onCancel={() => {
+                setIsLoginModalVisible(false);
+                setPhoneNumber('');
+                setValidateCode('');
+                setValidateCodeSent(false);
+              }}
+              footer={null}
+            >
+              <Form layout="vertical">
+                <Form.Item
+                  label="手机号"
+                  name="phoneNumber"
+                  rules={[
+                    { required: true, message: '请输入您的手机号' },
+                    {
+                      pattern: /^1[3-9]\d{9}$/,
+                      message: '请输入有效的11位中国大陆手机号',
+                    },
+                  ]}
+                >
+                  <Input
+                    placeholder="请输入您的手机号"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    disabled={validateCodeSent}
+                  />
+                </Form.Item>
+                {validateCodeSent && (
+                  <Form.Item
+                    label="验证码"
+                    name="validateCode"
+                    rules={[{ required: true, message: '请输入验证码' }]}
+                  >
+                    <Input
+                      placeholder="请输入您收到的验证码"
+                      value={validateCode}
+                      onChange={(e) => setValidateCode(e.target.value)}
+                    />
+                  </Form.Item>
+                )}
+                <Form.Item>
+                  {validateCodeSent ? (
+                    <div style={{ textAlign: 'center' }}>
+                      <Button
+                        type="primary"
+                        onClick={handleValidateCode}
+                        loading={loginLoading}
+                        style={{ width: '100px' }}
+                      >
+                        登录
+                      </Button>
+                    </div>
+                  ) : (
+                    <div style={{ textAlign: 'center' }}>
+                      <Button
+                        type="primary"
+                        onClick={handleSendValidateCode}
+                        loading={loginLoading}
+                        style={{ width: '150px' }}
+                      >
+                        发送验证码
+                      </Button>
+                    </div>
+                  )}
+                </Form.Item>
+              </Form>
+            </Modal>
           </Space>
         </Card>
       </Content>
+
       <Footer />
       <DocumentTitle title={`${caseDetail.title} - 上海洛哈纳网络科技有限公司`} />
     </div>
