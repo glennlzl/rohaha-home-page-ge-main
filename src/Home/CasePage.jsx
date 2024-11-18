@@ -430,7 +430,7 @@ function CasePage() {
     setLoginLoading(true);
     try {
       const response = await axios.post(
-        'http://106.54.213.250:8080/sms/sendSms',
+        '/api/sms/sendSms',
         { phoneNumber },
         {
           withCredentials: true,
@@ -457,7 +457,7 @@ function CasePage() {
     setLoginLoading(true);
     try {
       const response = await axios.post(
-        'http://106.54.213.250:8080/sms/validateSms',
+        '/api/sms/validateSms',
         {
           phoneNumber,
           validateCode,
